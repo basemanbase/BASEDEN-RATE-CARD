@@ -345,11 +345,11 @@
                     <div class="space-y-4">
                         <div class="flex justify-between items-center border-b border-white/10 pb-2">
                             <span class="text-gray-300">Island (Lekki, VI, Ikoyi)</span>
-                            <span class="font-bold"><span class="naira-symbol">₦</span>15,000</span>
+                            <span class="font-bold"><span class="naira-symbol">₦</span>20,000</span>
                         </div>
                         <div class="flex justify-between items-center border-b border-white/10 pb-2">
                             <span class="text-gray-300">Mainland (Ikeja, Surulere)</span>
-                            <span class="font-bold"><span class="naira-symbol">₦</span>25,000</span>
+                            <span class="font-bold"><span class="naira-symbol">₦</span>10,000</span>
                         </div>
                         <div class="text-xs text-orange-400 mt-2 p-2 bg-orange-900/10 rounded">
                             <i class="fas fa-exclamation-circle mr-1"></i> Shoots ending after 10 PM attract +₦10,000 surcharge.
@@ -424,17 +424,18 @@
                 <a href="https://wa.me/2348038793878" class="bg-brand-red text-white font-bold py-4 px-8 rounded-full hover:bg-red-700 transition flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(220,38,38,0.4)]">
                     <i class="fab fa-whatsapp"></i> Chat on WhatsApp
                 </a>
-                <a href="mailto:bookings@baseden.live" class="bg-transparent border border-white/20 text-white font-bold py-4 px-8 rounded-full hover:bg-white hover:text-black transition flex items-center justify-center gap-2">
-                    <i class="far fa-envelope"></i> Send Email
+                <a href="https://www.instagram.com/denofbase" target="_blank" rel="noopener" class="bg-transparent border border-white/20 text-white font-bold py-4 px-8 rounded-full hover:bg-white hover:text-black transition flex items-center justify-center gap-2">
+                    <i class="fab fa-instagram"></i> Message on Instagram
                 </a>
+                <button id="copy-email-btn" class="bg-white/5 border border-white/10 text-white font-bold py-4 px-6 rounded-full hover:bg-white/10 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-copy"></i> Copy Email
+                </button>
             </div>
 
             <div class="flex justify-center gap-6 text-2xl text-gray-500 mb-8">
                 <a href="https://www.instagram.com/denofbase?igsh=MWg3Z3FueWVrcTJubg==" class="hover:text-brand-red transition" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="#" class="hover:text-brand-red transition"><i class="fab fa-tiktok"></i></a>
-                <a href="#" class="hover:text-brand-red transition"><i class="fab fa-twitter"></i></a>
             </div>
 
             <p class="text-gray-600 text-sm">© 2026 BASEDEN. All rights reserved. <br> Lagos, Nigeria.</p>
@@ -449,6 +450,24 @@
             once: true,
             offset: 100,
         });
+
+        // Copy email functionality
+        const copyEmailBtn = document.getElementById('copy-email-btn');
+        if (copyEmailBtn) {
+            copyEmailBtn.addEventListener('click', async () => {
+                const email = 'bookings@baseden.live';
+                try {
+                    await navigator.clipboard.writeText(email);
+                    const originalHTML = copyEmailBtn.innerHTML;
+                    copyEmailBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    setTimeout(() => {
+                        copyEmailBtn.innerHTML = originalHTML;
+                    }, 2000);
+                } catch (err) {
+                    alert('Email: bookings@baseden.live');
+                }
+            });
+        }
     </script>
 </body>
 </html>
