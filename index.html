@@ -424,10 +424,15 @@
                 <a href="https://wa.me/2348038793878" class="bg-brand-red text-white font-bold py-4 px-8 rounded-full hover:bg-red-700 transition flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(220,38,38,0.4)]">
                     <i class="fab fa-whatsapp"></i> Chat on WhatsApp
                 </a>
-                <a href="mailto:bookings@baseden.live?subject=Booking%20Request&body=Hi%20BASEDEN%2C%0AProject%20type%3A%0ADate%3A%0ALocation%3A%0ABudget%3A%0ADetails%3A%0A" target="_blank" rel="noopener" class="bg-transparent border border-white/20 text-white font-bold py-4 px-8 rounded-full hover:bg-white hover:text-black transition flex items-center justify-center gap-2">
+                <a href="mailto:bookings@baseden.live?subject=Booking%20Request&body=Hi%20BASEDEN%2C%0AProject%20type%3A%0ADate%3A%0ALocation%3A%0ABudget%3A%0ADetails%3A%0A" class="bg-transparent border border-white/20 text-white font-bold py-4 px-8 rounded-full hover:bg-white hover:text-black transition flex items-center justify-center gap-2">
                     <i class="far fa-envelope"></i> Send Email
                 </a>
+                <button id="copy-email" class="bg-white/5 border border-white/10 text-white font-bold py-4 px-6 rounded-full hover:bg-white/10 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-copy"></i> Copy Email
+                </button>
             </div>
+
+            <p class="text-xs text-gray-500 mb-6">If the button doesn’t open your email app, copy and paste: <span class="font-semibold">bookings@baseden.live</span></p>
 
             <div class="flex justify-center gap-6 text-2xl text-gray-500 mb-8">
                 <a href="https://www.instagram.com/denofbase?igsh=MWg3Z3FueWVrcTJubg==" class="hover:text-brand-red transition" aria-label="Instagram">
@@ -449,6 +454,21 @@
             once: true,
             offset: 100,
         });
+
+        // Copy email fallback for users without a mailto handler configured
+        const copyBtn = document.getElementById('copy-email');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', async () => {
+                const email = 'bookings@baseden.live';
+                try {
+                    await navigator.clipboard.writeText(email);
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => { copyBtn.textContent = 'Copy Email'; }, 1500);
+                } catch (err) {
+                    alert('Copy failed. Please copy manually: ' + email);
+                }
+            });
+        }
     </script>
 </body>
 </html>
